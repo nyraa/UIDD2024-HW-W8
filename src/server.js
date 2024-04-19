@@ -36,7 +36,14 @@ app.post("/api/search", (req, res) => {
 
 app.post("/api/add", (req, res) => {
     const { id, name } = req.body;
-    if(students[id])
+    if(id === "" || name === "")
+    {
+        res.json({
+            success: false,
+            message: "ID and Name cannot be empty"
+        });
+    }
+    else if(students[id])
     {
         res.json({
             success: false,
